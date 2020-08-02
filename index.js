@@ -11,7 +11,7 @@ let people =
   {
     name: "Ada Lovelace",
     number: "39-44-5323523",
-    id: 4
+    id: 2
   },
   {
     name: "Dan Abramov",
@@ -49,6 +49,13 @@ app.get('/api/people/:id', (req, res) => {
   } else {
     res.status(404).end()
   }
+})
+
+app.delete('/api/people/:id', (req, res) => {
+  const id = Number(req.params.id)
+  people = people.filter(person => person.id !== id)
+
+  res.status(204).end()
 })
 
 const PORT = 3001
